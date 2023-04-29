@@ -36,6 +36,8 @@ int main(void){
         bool append_redirect = false; //bool variable for append output redirection
         string input_file;  //string variable for input file
         string output_file; //string variable for output file
+        int pipefd[2];
+        bool is_piping = false;
 
         string input;              //variable initialize
         cout << "Enter Command:>";
@@ -73,6 +75,9 @@ int main(void){
             else if (InputAfterSpace == ">>") {
                 append_redirect = true;
                 getline(iss, output_file, ' ');
+            }
+            else if (InputAfterSpace == "|") {
+                is_piping = true;
             }
         }
 
