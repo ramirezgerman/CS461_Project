@@ -49,7 +49,27 @@ int main(void) {
             if (InputAfterSpace == "exit") {                //if user input exit, program stops
                 cout << "Exiting the program..." << endl;
                 run = 0;
+                break;
+            } else if (InputAfterSpace == "cd") {
+                getline(iss, InputAfterSpace, ' '); // get the directory path after "cd"
+                chdir(InputAfterSpace.c_str());
+                continue;
+            } else if (InputAfterSpace == "pwd") {  // get the directory path after "pwd"
+                char cwd[1024];
+                getcwd(cwd, sizeof(cwd));
+                cout << cwd << endl;
+                continue;
+            } else if (InputAfterSpace == "echo") { // get the directory path after "echo"
+                string output;
+                getline(iss, output);
+                cout << output << endl;
+                continue;
+            } else if (InputAfterSpace == "mkdir") {
+                getline(iss, InputAfterSpace, ' '); // get the directory path after "mkdir"
+                mkdir(InputAfterSpace.c_str(), 0777);
+                continue;
             }
+
             if (!InputAfterSpace.empty() && (InputAfterSpace != "history")) {
                 if (input[0] == '!') {
                     continue;
